@@ -1,5 +1,5 @@
 body {
-	background-color: #EBF5FB ;
+	background-color: #dbebff;
 	margin: 10px;
 	text-align: center;
 	font-family: sans-serif;
@@ -28,24 +28,35 @@ h5 {
 }
 
 /*Cards*/
+#all-cards {
+	horizontal-align: center;
+	background-color: grey;
+	margin: 20px 10px;
+}
+
 .cards {
 	background-color: #2ECC71;
 	display: inline-block;
+	position: relative;
 	text-align: center;
-	margin: 50px 10px;
 	width: 100px;
 	height: 140px;
-	font-size: 50px;
-	padding: 30px;
+	font-size: 60px;
+	padding: 25px;
 	color: black;
-	font-family: "Baskerville";
+	font-family: baskerville;
 }
 
 input {
-	font-size: 25px;
+	font-size: 26px;
 	padding: 5px;
 	margin-bottom: 20px;
 	text-align: center;
+}
+
+#player-input {
+		font-size: 20px;
+		width: 400px;
 }
 
 #score-output {

@@ -2,34 +2,55 @@ console.log("It is running!")
 //Ask for Player's Name
 var playerInput = document.querySelector('#player-input');
 var playerName = document.querySelector('#player-name');
-var submitBtn = document.querySelector('#submit-btn');
 var resetBtn = document.querySelector('#reset-btn')
 var score = document.querySelector('#score');
 var playInput = document.querySelector('#play-input');
+var cards = document.querySelectorAll('.cards');
 
 var typedKey;
 
 //array for cards
 var symbols = ["`", "-", "=", "[", "]", ";", "'", ",", ".", "/", "|", "\u005C"];
 
-//randomise index number
-var indexNumGenerator = function() {
-    var indexNum = Math.floor(Math.random() * 6);
-    console.log(indexNum);
-}
-indexNumGenerator();
+//randomise index number for cards position
+var indexCardNumGenerator = function() {
+    return Math.floor(Math.random() * 5);
+};
 
-var enterPlayerName = function() {
+var indexSymNumGenerator = function() {
+    return indexSymNum = Math.floor(Math.random() * 11);
+};
+
+var generateCardsSym = function() {
+    var generatedCardNumIOne = indexCardNumGenerator();
+    var generatedCardNumITwo = indexCardNumGenerator();
+    var generatedSymNumIOne = indexSymNumGenerator();
+    var generatedSymNumITwo = indexSymNumGenerator();
+
+    if (generatedCardNumIOne !== generatedCardNumITwo && generatedSymNumIOne !== generatedSymNumITwo) {
+        cards[generatedCardNumIOne].innerHTML = symbols[generatedSymNumITwo];
+        cards[generatedCardNumITwo].innerHTML = symbols[generatedSymNumIOne];
+    } else {
+        generatedCardNumITwo = indexCardNumGenerator();
+        generatedSymNumITwo = indexSymNumGenerator();
+        cards[generatedCardNumIOne].innerHTML = symbols[generatedSymNumITwo];
+        cards[generatedCardNumITwo].innerHTML = symbols[generatedSymNumIOne];
+    };
+};
+generateCardsSym();
+
+var enterPlayerName = function(event) {
+    if (event.key === 'Enter') {
     //get name and change to upper case to greet
     playerName.innerHTML = "Hello "+playerInput.value.toUpperCase();
     //hide input text-box and style away.
     playerInput.classList.add('hide');
-    submitBtn.classList.add('hide');
     playerName.classList.add('style-change');
-}
+    };
+};
 
-//When submit button is clicked, name is fixed.
-submitBtn.addEventListener('click', enterPlayerName);
+//When Enter Key is clicked, name is fixed.
+playerInput.addEventListener('keypress', enterPlayerName);
 
 
 //reset everything
@@ -40,13 +61,13 @@ var resetGame = function() {
     submitBtn.classList.remove('hide');
     playerName.classList.remove('style-change');
     score.innerText = 0;
-}
+};
 //When reset button is clicked, everything reset.
 resetBtn.addEventListener('click', resetGame);
 
 var playInputreset = function() {
     playInput.value = "";
-}
+};
 
 var checkInput = function(event) {
     if (event.key === 'Enter') {
@@ -57,8 +78,8 @@ var checkInput = function(event) {
             console.log('can detect');
         } else {
             console.log('cannot detect');
-        }
-    }
-}
+        };
+    };
+};
 
 playInput.addEventListener('keypress', checkInput);
