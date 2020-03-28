@@ -52,6 +52,12 @@ input {
 	font-size: 20px;
 }
 
-hide {
+.hide {
 	display: none;
+}
+
+.style-change {
+	margin-bottom: 0;
+	font-size: 25px;
+	color: blue;
 }
