@@ -11,6 +11,11 @@ h1 {
 	margin-top: 20px;
 }
 
+h5 {
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
 #greeting {
 	padding-top: 30px;
 }
@@ -18,20 +23,35 @@ h1 {
 /**/
 #game-area {
 	margin: 20px 30px;
-	background-color: #FFEEC7;
+	/*background-color: ;*/
 	height: 600px;
 }
 
 /*Cards*/
 .cards {
-	background-color: #94BFBD;
+	background-color: #2ECC71;
 	display: inline-block;
 	text-align: center;
-	margin: 50px auto;
+	margin: 50px 10px;
 	width: 100px;
 	height: 140px;
 	font-size: 50px;
 	padding: 30px;
 	color: black;
 	font-family: "Baskerville";
+}
+
+input {
+	font-size: 25px;
+	padding: 5px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+#score-output {
+	font-size: 20px;
+}
+
+hide {
+	display: none;
 }
