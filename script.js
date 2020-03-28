@@ -27,14 +27,15 @@ var generateCardsSym = function() {
     var generatedSymNumIOne = indexSymNumGenerator();
     var generatedSymNumITwo = indexSymNumGenerator();
 
+//The card would jumped down on its own after symbols are generated on cards.
     if (generatedCardNumIOne !== generatedCardNumITwo && generatedSymNumIOne !== generatedSymNumITwo) {
-        cards[generatedCardNumIOne].innerHTML = symbols[generatedSymNumITwo];
-        cards[generatedCardNumITwo].innerHTML = symbols[generatedSymNumIOne];
+        cards[generatedCardNumIOne].innerText = symbols[generatedSymNumITwo];
+        cards[generatedCardNumITwo].innerText = symbols[generatedSymNumIOne];
     } else {
         generatedCardNumITwo = indexCardNumGenerator();
         generatedSymNumITwo = indexSymNumGenerator();
-        cards[generatedCardNumIOne].innerHTML = symbols[generatedSymNumITwo];
-        cards[generatedCardNumITwo].innerHTML = symbols[generatedSymNumIOne];
+        cards[generatedCardNumIOne].innerText = symbols[generatedSymNumITwo];
+        cards[generatedCardNumITwo].innerText = symbols[generatedSymNumIOne];
     };
 };
 generateCardsSym();

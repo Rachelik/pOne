@@ -37,14 +37,15 @@ h5 {
 .cards {
 	background-color: #2ECC71;
 	display: inline-block;
-	position: relative;
 	text-align: center;
 	width: 100px;
-	height: 140px;
+	height: 120px;
 	font-size: 60px;
-	padding: 25px;
+	line-height: 120px;
+	padding: 5px;
 	color: black;
 	font-family: baskerville;
+
 }
 
 input {
