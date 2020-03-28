@@ -1,9 +1,37 @@
 body {
-	background-color: khaki;
-	margin: 10px auto;
+	background-color: #EBF5FB ;
+	margin: 10px;
+	text-align: center;
+	font-family: sans-serif;
 }
 
+/*Header*/
 h1 {
-	color: red;
-	font-style: roboto;
+	color: black;
+	margin-top: 20px;
+}
+
+#greeting {
+	padding-top: 30px;
+}
+
+/**/
+#game-area {
+	margin: 20px 30px;
+	background-color: #FFEEC7;
+	height: 600px;
+}
+
+/*Cards*/
+.cards {
+	background-color: #94BFBD;
+	display: inline-block;
+	text-align: center;
+	margin: 50px auto;
+	width: 100px;
+	height: 140px;
+	font-size: 50px;
+	padding: 30px;
+	color: black;
+	font-family: "Baskerville";
 }
