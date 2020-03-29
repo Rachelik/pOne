@@ -6,6 +6,7 @@ var resetBtn = document.querySelector('#reset-btn')
 var score = document.querySelector('#score');
 var playInput = document.querySelector('#play-input');
 var cards = document.querySelectorAll('.cards');
+var message = document.querySelector('#message');
 
 var totalscores = 0;
 var correctCardArr = [];
@@ -59,7 +60,7 @@ var enterPlayerName = function(event) {
     //hide input text-box and style away.
     playerInput.classList.add('hide');
     playerName.classList.add('style-change');
-};
+    };
 };
 
 //When Enter Key is clicked, name is fixed.
@@ -72,7 +73,14 @@ var resetGame = function() {
     playerName.innerText = "Player's Name";
     playerInput.classList.remove('hide');
     playerName.classList.remove('style-change');
+    totalscores = 0;
     score.innerText = 0;
+    message.innerText = "";
+    symTyped = "";
+    for (var i = 0; i < cards.length; i++) {
+        cards[i].innerText = "";
+    };
+    playInput.placeholder = "Enter 'start' to begin";
 };
 
 //When reset button is clicked, everything reset.
@@ -92,7 +100,6 @@ var makeCardSet = function() {
     playInputReset();
 };
 
-
 var cardSetDone = function() {
     if (correctCardArr.length === 2) {
         correctCardArr = [];
@@ -106,8 +113,8 @@ var scoreUpdate = function() {
     totalscores++;
     score.innerText = totalscores;
     cardSetDone();
+    message.innerText = `You got it! Keep going ${playerInput.value}`
 }
-
 
 var checkInput = function(event) {
     if (event.key === 'Enter') {
@@ -116,15 +123,17 @@ var checkInput = function(event) {
         if (symTyped === "start") {
             makeCardSet();
             playInputReset();
+            message.innerText = "Game start now. Enter the symbols. One at a time."
             // symTyped = playInput.value
         } else if (symTyped !== symbols[symPickTwo[0]] && symTyped !== symbols[symPickTwo[1]]) {
             if (wrongCardArr.indexOf(symTyped) === -1){
                 wrongCardArr.push(symTyped);
-                totalscores--;
+                totalscores -= 3;
                 score.innerText = totalscores;
                 playInputReset();
+                message.innerText = "Nope, try again please."
             } else if (wrongCardArr.indexOf(symTyped) !== -1) {
-                console.log("you have entered this false value before.")
+                message.innerText = "You have entered this wrong symbol before.";
                 playInputReset();
             };
         } else if (symTyped === symbols[symPickTwo[0]] || symTyped === symbols[symPickTwo[1]]) {
@@ -138,7 +147,8 @@ var checkInput = function(event) {
                     scoreUpdate();
                 };
             } else if (correctCardArr.indexOf(symTyped) !== -1) {
-                console.log("you have already guess this correctly");
+                message.innerText = `Repeated input. Enter next symbol ${playerInput.value}`;
+                playInputReset();
             };
         };
     };
