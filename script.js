@@ -7,38 +7,47 @@ var score = document.querySelector('#score');
 var playInput = document.querySelector('#play-input');
 var cards = document.querySelectorAll('.cards');
 
+
 var typedKey;
+var totalscores = 0;
+
 
 //array for cards
 var symbols = ["`", "-", "=", "[", "]", ";", "'", ",", ".", "/", "|", "\u005C"];
 
-//randomise index number for cards position
-var indexCardNumGenerator = function() {
-    return Math.floor(Math.random() * 5);
+
+//generate two random cards.
+var genCardIArr = [];
+var genCards = function() {
+    while (genCardIArr.length < 2) {
+        var genCardI = Math.floor(Math.random() * 5);
+        if (genCardIArr.indexOf(genCardI) === -1) {
+            genCardIArr.push(genCardI);
+        };
+    };
+    console.log("Cards Index: "+genCardIArr);
 };
 
-var indexSymNumGenerator = function() {
-    return indexSymNum = Math.floor(Math.random() * 11);
+
+//generate two random symbols.
+var genSymIArr = [];
+var genSyms = function() {
+    while (genSymIArr.length < 2) {
+        var genSymI = Math.floor(Math.random() * 12);
+        if (genSymIArr.indexOf(genSymI) === -1) {
+            genSymIArr.push(genSymI);
+        };
+    };
+    console.log("Symbols Index: "+genSymIArr);
 };
 
-var generateCardsSym = function() {
-    var generatedCardNumIOne = indexCardNumGenerator();
-    var generatedCardNumITwo = indexCardNumGenerator();
-    var generatedSymNumIOne = indexSymNumGenerator();
-    var generatedSymNumITwo = indexSymNumGenerator();
 
-//The card would jumped down on its own after symbols are generated on cards.
-    if (generatedCardNumIOne !== generatedCardNumITwo && generatedSymNumIOne !== generatedSymNumITwo) {
-        cards[generatedCardNumIOne].innerText = symbols[generatedSymNumITwo];
-        cards[generatedCardNumITwo].innerText = symbols[generatedSymNumIOne];
-    } else {
-        generatedCardNumITwo = indexCardNumGenerator();
-        generatedSymNumITwo = indexSymNumGenerator();
-        cards[generatedCardNumIOne].innerText = symbols[generatedSymNumITwo];
-        cards[generatedCardNumITwo].innerText = symbols[generatedSymNumIOne];
+var genCardsSyms = function(cardsIArr, symsIArr) {
+    for (var i = 0; i<cardsIArr.length; i++) {
+        cards[cardsIArr[i]].innerText = symbols[symsIArr[i]];
     };
 };
-generateCardsSym();
+
 
 var enterPlayerName = function(event) {
     if (event.key === 'Enter') {
@@ -47,12 +56,11 @@ var enterPlayerName = function(event) {
     //hide input text-box and style away.
     playerInput.classList.add('hide');
     playerName.classList.add('style-change');
-    };
+};
 };
 
 //When Enter Key is clicked, name is fixed.
 playerInput.addEventListener('keypress', enterPlayerName);
-
 
 //reset everything
 var resetGame = function() {
@@ -66,19 +74,41 @@ var resetGame = function() {
 //When reset button is clicked, everything reset.
 resetBtn.addEventListener('click', resetGame);
 
-var playInputreset = function() {
+var playInputReset = function() {
     playInput.value = "";
+};
+
+var genCardSet = function() {
+    playInput.placeholder = "";
+    genCards();
+    genSyms();
+    genCardsSyms(genCardIArr, genSymIArr);
+    playInputReset();
+    gameStatus = "please type in"
 };
 
 var checkInput = function(event) {
     if (event.key === 'Enter') {
-        typedKey = playInput.value;
-        playInputreset();
-        console.log(typedKey);
-        if(typedKey === symbols[symbols.length-1]){
-            console.log('can detect');
-        } else {
-            console.log('cannot detect');
+        if(playInput.value === "start") {
+            genCardSet();
+        } else if (genSymIArr.length !== 0) {
+            typedKey = playInput.value;
+            for (var i=0; i<genSymIArr.length; i++) {
+                if (typedKey === symbols[genSymIArr[i]]) {
+                    cards[genCardIArr[i]].innerText = "";
+                    genSymIArr.splice(i, 1);
+                    genCardIArr.splice(i, 1);
+                    playInputReset();
+                    totalscores++;
+                    score.innerText = totalscores;
+                    if (genSymIArr.length === 0) {
+                        genCardSet();
+                    }
+                } else {
+                    console.log('incorrect. try again.');
+                    playInputReset();
+                };
+            };
         };
     };
 };

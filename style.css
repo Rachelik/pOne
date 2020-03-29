@@ -23,13 +23,12 @@ h5 {
 /**/
 #game-area {
 	margin: 20px 30px;
-	/*background-color: ;*/
-	height: 600px;
+	/*background-color: pink;*/
+	/*height: 800px;*/
 }
 
 /*Cards*/
 #all-cards {
-	horizontal-align: center;
 	background-color: grey;
 	margin: 20px 10px;
 }
