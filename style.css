@@ -1,8 +1,9 @@
 body {
 	background-color: #dbebff;
-	margin: 10px;
+	margin: 20px auto;
 	text-align: center;
 	font-family: sans-serif;
+	width: 700px;
 }
 
 /*Header*/
@@ -22,15 +23,16 @@ h5 {
 
 /**/
 #game-area {
-	margin: 20px 30px;
-	/*background-color: pink;*/
-	/*height: 800px;*/
+	margin: 20px auto;
+	width: 700px;
 }
 
 /*Cards*/
 #all-cards {
 	background-color: grey;
-	margin: 20px 10px;
+	margin: 20px auto;
+	width: 600px;
+	height: 160px;
 }
 
 .cards {

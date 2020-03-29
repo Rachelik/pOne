@@ -152,6 +152,3 @@ var checkInput = function(event) {
 };
 
 playInput.addEventListener('keypress', checkInput);
-
-            // totalscores++;
-            // score.innerText = totalscores;
