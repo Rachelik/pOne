@@ -53,6 +53,7 @@ var enterPlayerName = function(event) {
     if (event.key === 'Enter') {
     //get name and change to upper case to greet
     playerName.innerHTML = "Hello "+playerInput.value.toUpperCase();
+
     //hide input text-box and style away.
     playerInput.classList.add('hide');
     playerName.classList.add('style-change');
@@ -87,26 +88,29 @@ var genCardSet = function() {
     gameStatus = "please type in"
 };
 
+
+var typedCorrectKeyArr = [];
+var typedWrongKeyArr = [];
 var checkInput = function(event) {
     if (event.key === 'Enter') {
-        if(playInput.value === "start") {
+        typedKey = playInput.value;
+        if (typedKey === "start") {
             genCardSet();
-        } else if (genSymIArr.length !== 0) {
-            typedKey = playInput.value;
-            for (var i=0; i<genSymIArr.length; i++) {
-                if (typedKey === symbols[genSymIArr[i]]) {
-                    cards[genCardIArr[i]].innerText = "";
-                    genSymIArr.splice(i, 1);
-                    genCardIArr.splice(i, 1);
-                    playInputReset();
-                    totalscores++;
-                    score.innerText = totalscores;
-                    if (genSymIArr.length === 0) {
-                        genCardSet();
-                    }
+        } else if (symbols.indexOf(typedKey) === -1) {
+            console.log("wrong. please try again");
+
+            playInputReset();
+        } else {
+            while(typedCorrectKeyArr.length < 2) {
+                var typedKeySymI = symbols.indexOf(typedKey);
+                var typedKeyCardI = genSymIArr.indexOf(typedKeySymI);
+                cards[typedKeyCardI].innerText = " ";
+                playInputReset();
+                if (typedCorrectKeyArr.indexOf(typedKeyCardI) === -1) {
+                    console.log("correct");
+                    typedCorrectKeyArr.push(typedKeySymI);
                 } else {
-                    console.log('incorrect. try again.');
-                    playInputReset();
+                    console.log("You have already typed that.");
                 };
             };
         };
@@ -114,3 +118,6 @@ var checkInput = function(event) {
 };
 
 playInput.addEventListener('keypress', checkInput);
+
+            // totalscores++;
+            // score.innerText = totalscores;
