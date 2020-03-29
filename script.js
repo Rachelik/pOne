@@ -7,18 +7,21 @@ var score = document.querySelector('#score');
 var playInput = document.querySelector('#play-input');
 var cards = document.querySelectorAll('.cards');
 
-
-var typedKey;
 var totalscores = 0;
-
+var correctCardArr = [];
+var wrongCardArr = [];
+var symTyped;
 
 //array for cards
 var symbols = ["`", "-", "=", "[", "]", ";", "'", ",", ".", "/", "\u005C"];
+var sSymbols = ["<", ">", "?", ":", '"', "{", "}", "|", "+", "_", ")", "(", "*", "&", "^", "%", "$", "#", "@", "!", "~"];
+var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
 
-//generate two random cards.
 var cardPickTwo = [];
+//function to generate two random cards.
 var cardPick = function() {
+    cardPickTwo = [];
     while (cardPickTwo.length < 2) {
         var genCardI = Math.floor(Math.random() * 5);
         if (cardPickTwo.indexOf(genCardI) === -1) {
@@ -28,10 +31,10 @@ var cardPick = function() {
     console.log("Cards Index: "+cardPickTwo);
 };
 
-
-//generate two random symbols.
 var symPickTwo = [];
+//function to generate two random symbols.
 var symPick = function() {
+    symPickTwo = [];
     while (symPickTwo.length < 2) {
         var genSymI = Math.floor(Math.random() * 11);
         if (symPickTwo.indexOf(genSymI) === -1) {
@@ -41,16 +44,14 @@ var symPick = function() {
     console.log("Symbols Index: "+symPickTwo);
 };
 
-
-
+//function to link the two random symbols and cards together.
 var linkCardSym = function(cardPickArr, symPickArr) {
     for (var i = 0; i<cardPickArr.length; i++) {
         cards[cardPickArr[i]].innerText = symbols[symPickArr[i]];
     };
 };
 
-
-
+//function to enter name
 var enterPlayerName = function(event) {
     if (event.key === 'Enter') {
     //get name and change to upper case to greet
@@ -70,7 +71,6 @@ var resetGame = function() {
     playerInput.value = "";
     playerName.innerText = "Player's Name";
     playerInput.classList.remove('hide');
-    submitBtn.classList.remove('hide');
     playerName.classList.remove('style-change');
     score.innerText = 0;
 };
@@ -78,13 +78,12 @@ var resetGame = function() {
 //When reset button is clicked, everything reset.
 resetBtn.addEventListener('click', resetGame);
 
-
+//function to reset playInput value as user entered.
 var playInputReset = function() {
     playInput.value = "";
 };
 
-
-
+//function to remake card set of two as user guessed correctly.
 var makeCardSet = function() {
     playInput.placeholder = "";
     cardPick();
@@ -94,10 +93,22 @@ var makeCardSet = function() {
 };
 
 
-var correctCardArr = [];
-var wrongCardArr = [];
-var game = "start";
-var symTyped;
+var cardSetDone = function() {
+    if (correctCardArr.length === 2) {
+        correctCardArr = [];
+        wrongCardArr = [];
+        var timeoutCardSet = setTimeout(makeCardSet, 500);
+    };
+};
+
+var scoreUpdate = function() {
+    playInputReset();
+    totalscores++;
+    score.innerText = totalscores;
+    cardSetDone();
+}
+
+
 var checkInput = function(event) {
     if (event.key === 'Enter') {
         symTyped = playInput.value
@@ -121,28 +132,10 @@ var checkInput = function(event) {
                 correctCardArr.push(symTyped);
                 if (symTyped === cards[cardPickTwo[0]].innerText) {
                     cards[cardPickTwo[0]].innerText = "";
-                    playInputReset();
-                    totalscores++;
-                    score.innerText = totalscores;
-                    if (correctCardArr.length === 2) {
-                        cardPickTwo = [];
-                        symPickTwo = [];
-                        correctCardArr = [];
-                        wrongCardArr = [];
-                        makeCardSet();
-                    };
+                    scoreUpdate();
                 } else if (symTyped === cards[cardPickTwo[1]].innerText) {
                     cards[cardPickTwo[1]].innerText = "";
-                    playInputReset();
-                    totalscores++;
-                    score.innerText = totalscores;
-                    if (correctCardArr.length === 2) {
-                        cardPickTwo = [];
-                        symPickTwo = [];
-                        correctCardArr = [];
-                        wrongCardArr = [];
-                        makeCardSet();
-                    };
+                    scoreUpdate();
                 };
             } else if (correctCardArr.indexOf(symTyped) !== -1) {
                 console.log("you have already guess this correctly");
