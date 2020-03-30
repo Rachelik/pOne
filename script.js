@@ -198,7 +198,7 @@ var cardSetDone = function() {
         // console.log("Time Taken: " + timetaken + "s")
         correctCardArr = [];
         wrongCardArr = [];
-        var timeoutCardSet = setTimeout(makeCardSet, 500);
+        var timeoutCardSet = setTimeout(makeCardSet, 400);
     };
 };
 
@@ -212,6 +212,8 @@ var scoreUpdate = function() {
 };
 
 
+
+var timerStart = "stop";
 //check input if match or not. For Easy Symbols but did not link to the button yet.
 var checkInput = function(event) {
     if (event.key === 'Enter') {
@@ -219,11 +221,13 @@ var checkInput = function(event) {
         //whatever typed will be the playInput.value in the beginning.
         if (symTyped === "start") {
             sevenBtn.classList.add('hide');
+            timerStart = "start"
             if (arrToSet.length === 0) {
                 message.innerText = "Please Choose Level."
                 playInputReset();
             } else if (arrToSet.length !== 0) {
-                setTimeout(makeCardSet, 500);
+                setTimeout(makeCardSet, 400);
+
 //TRIAL TIMER 0------------------------------
 //                 start = new Date().getTime();
 //                 console.log("0 " +start);
@@ -265,3 +269,20 @@ var checkInput = function(event) {
 };
 
 playInput.addEventListener('keypress', checkInput);
+
+
+function myTimer() {
+    if (timer>0 && timerStart === "start"){
+        timer--;
+        document.getElementById('demo').innerText = timer + "s";
+
+    } else if (timer === 0) {
+        timerStart === "stop";
+        message.innerText = "Well done. Reset Game to play again."
+        playInput.classList.add('game-over');
+    };
+};
+
+var myVar =setInterval(myTimer, 1000);
+var timer = 60;
+document.getElementById('demo').innerText = timer + "s";
