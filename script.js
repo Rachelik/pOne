@@ -23,6 +23,27 @@ var symbols = ["`", "-", "=", "[", "]", ";", "'", ",", ".", "/", "\u005C"];
 var sSymbols = ["<", ">", "?", ":", '"', "{", "}", "|", "+", "_", ")", "(", "*", "&", "^", "%", "$", "#", "@", "!", "~"];
 var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
+//choose level btn
+var easyBtn = document.querySelector('#easy-btn');
+var numbersBtn = document.querySelector('#numbers-btn');
+var hardBtn = document.querySelector('#hard-btn');
+
+//function to choose Level
+var easyLevel = function() {
+    var arrToSet = symbols;
+}
+
+var numbersLevel = function() {
+    var arrToSet = numbers;
+}
+
+var hardLevel = function() {
+    var arrToSet = sSymbols;
+}
+
+var mixLevel = function () {
+    var arrToSet = symbols.concat(numbers, sSymbols);
+}
 
 //function to generate two random cards.
 var cardPickTwo = [];
