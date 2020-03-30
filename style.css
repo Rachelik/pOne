@@ -78,3 +78,13 @@ input {
 .game-over {
 	visibility: hidden;
 }
+
+#game-level {
+	text-align: left;
+	margin-left: 50px;
+}
+
+.level-btn {
+	background-color: pink;
+	margin-right: 5px;
+}

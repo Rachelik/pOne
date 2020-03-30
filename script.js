@@ -8,8 +8,13 @@ var playInput = document.querySelector('#play-input');
 var cards = document.querySelectorAll('.cards');
 var message = document.querySelector('#message');
 
+//final scores to be accumulated here and update to score.
 var totalscores = 0;
+
+//correct card array for player correct guess. 2 input for each set. will reset every set of card.
 var correctCardArr = [];
+
+//wrong card array for play wrong guess. if 3 wrongs for each set, game over. will reset every set of card.
 var wrongCardArr = [];
 var symTyped;
 
@@ -19,8 +24,8 @@ var sSymbols = ["<", ">", "?", ":", '"', "{", "}", "|", "+", "_", ")", "(", "*",
 var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
 
-var cardPickTwo = [];
 //function to generate two random cards.
+var cardPickTwo = [];
 var cardPick = function() {
     cardPickTwo = [];
     while (cardPickTwo.length < 2) {
@@ -32,8 +37,8 @@ var cardPick = function() {
     console.log("Cards Index: "+cardPickTwo);
 };
 
-var symPickTwo = [];
 //function to generate two random symbols.
+var symPickTwo = [];
 var symPick = function() {
     symPickTwo = [];
     while (symPickTwo.length < 2) {
@@ -103,6 +108,7 @@ var makeCardSet = function() {
     playInputReset();
 };
 
+// make new card set of 2 symbols once player completed. Reset correct and wrong card array.
 var cardSetDone = function() {
     if (correctCardArr.length === 2) {
         correctCardArr = [];
@@ -111,6 +117,7 @@ var cardSetDone = function() {
     };
 };
 
+// if correct, add scores to totalscores then check if each set of 2 cards is done.
 var scoreUpdate = function() {
     playInputReset();
     totalscores++;
@@ -119,6 +126,7 @@ var scoreUpdate = function() {
     message.innerText = `You got it! Keep going ${playerInput.value}`
 }
 
+//check input if match or not. For Easy Symbols but did not link to the button yet.
 var checkInput = function(event) {
     if (event.key === 'Enter') {
         symTyped = playInput.value
