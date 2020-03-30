@@ -152,6 +152,7 @@ var resetGame = function() {
     for (var i = 0; i < cards.length; i++) {
         cards[i].innerText = "";
     };
+    levelTitle.innerHTML = "Choose Level"
     for (var i = 0; i < levelBtns.length; i++) {
         levelBtns[i].classList.remove('hide');
     };
