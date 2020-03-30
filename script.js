@@ -7,6 +7,8 @@ var score = document.querySelector('#score');
 var playInput = document.querySelector('#play-input');
 var cards = document.querySelectorAll('.cards');
 var message = document.querySelector('#message');
+var levelTitle = document.querySelector('#level-title');
+var levelBtns = document.querySelectorAll('.level-btn')
 
 //final scores to be accumulated here and update to score.
 var totalscores = 0;
@@ -33,28 +35,38 @@ var arrToSet = [];
 //function to choose Level
 var easyLevel = function() {
     arrToSet = symbols;
+    showLevel(easyBtn);
 };
 
 easyBtn.addEventListener('click', easyLevel);
 
 var numbersLevel = function() {
     arrToSet = numbers;
+    showLevel(numbersBtn);
 };
 
 numbersBtn.addEventListener('click', numbersLevel);
 
 var hardLevel = function() {
     arrToSet = sSymbols;
+    showLevel(hardBtn);
 };
 
 hardBtn.addEventListener('click', hardLevel);
 
 var mixLevel = function () {
     arrToSet = symbols.concat(numbers, sSymbols);
+    showLevel(mixBtn);
 };
 
 mixBtn.addEventListener('click', mixLevel);
 
+var showLevel = function(button) {
+    levelTitle.innerHTML = button.innerHTML;
+    for (var i = 0; i < levelBtns.length; i++) {
+        levelBtns[i].classList.add('hide');
+    };
+};
 
 //function to generate two random cards.
 var cardPickTwo = [];
@@ -105,8 +117,16 @@ playerInput.addEventListener('keypress', enterPlayerName);
 
 
 //reset everything
-var resetGame = function(arrToSet) {
+var resetGame = function() {
     arrToSet = [];
+    correctCardArr = [];
+    wrongCardArr = [];
+    for (var i = 0; i < cards.length; i++) {
+        cards[i].innerText = "";
+    };
+    for (var i = 0; i < levelBtns.length; i++) {
+        levelBtns[i].classList.remove('hide');
+    };
     playerInput.value = "";
     playerName.innerText = "Player's Name";
     playerInput.classList.remove('hide');
@@ -117,9 +137,6 @@ var resetGame = function(arrToSet) {
     symTyped = "";
     if (playInput.className === "game-over"){
         playInput.classList.remove('game-over');
-    };
-    for (var i = 0; i < cards.length; i++) {
-        cards[i].innerText = "";
     };
     playInput.placeholder = "Enter 'start' to begin";
 };
@@ -165,9 +182,14 @@ var checkInput = function(event) {
         symTyped = playInput.value
         //whatever typed will be the playInput.value in the beginning.
         if (symTyped === "start") {
-            makeCardSet();
-            playInputReset();
-            message.innerText = "Game start now. Enter the symbols. One at a time."
+            if (arrToSet.length === 0) {
+                message.innerText = "Please Choose Level."
+                playInputReset();
+            } else if (arrToSet.length !== 0) {
+                setTimeout(makeCardSet, 500);
+                playInputReset();
+                message.innerText = "Game start now. Enter the symbols on the cards. One at a time."
+            };
             // symTyped = playInput.value
         } else if (symTyped !== arrToSet[symPickTwo[0]] && symTyped !== arrToSet[symPickTwo[1]]) {
             if (wrongCardArr.indexOf(symTyped) === -1){

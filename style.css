@@ -14,11 +14,11 @@ h1 {
 
 h5 {
 	font-weight: bold;
-	margin-bottom: 20px;
+	margin-bottom: 8px;
 }
 
 #greeting {
-	padding-top: 30px;
+	padding-top: 20px;
 }
 
 /**/
@@ -52,7 +52,7 @@ h5 {
 input {
 	font-size: 26px;
 	padding: 5px;
-	margin-bottom: 20px;
+	margin-bottom: 35px;
 	text-align: center;
 }
 
@@ -72,7 +72,7 @@ input {
 .style-change {
 	margin-bottom: 0;
 	font-size: 25px;
-	color: blue;
+	color: #00008b;
 }
 
 .game-over {
@@ -80,11 +80,21 @@ input {
 }
 
 #game-level {
-	text-align: left;
-	margin-left: 50px;
+	text-align: center;
+	padding-bottom: 15px;
 }
 
 .level-btn {
 	background-color: pink;
 	margin-right: 5px;
+}
+
+#message {
+	font-size: 18px;
+	font-style: italic;
+}
+
+.warning {
+	color: red;
+	font-weight: bold;
 }
