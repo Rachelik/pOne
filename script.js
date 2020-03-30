@@ -5,7 +5,8 @@ var playerName = document.querySelector('#player-name');
 var resetBtn = document.querySelector('#reset-btn')
 var score = document.querySelector('#score');
 var playInput = document.querySelector('#play-input');
-var cards = document.querySelectorAll('.cards');
+var allCards = document.querySelector('#all-cards');
+
 var message = document.querySelector('#message');
 var levelTitle = document.querySelector('#level-title');
 var levelBtns = document.querySelectorAll('.level-btn')
@@ -30,35 +31,36 @@ var easyBtn = document.querySelector('#easy-btn');
 var numbersBtn = document.querySelector('#numbers-btn');
 var hardBtn = document.querySelector('#hard-btn');
 var mixBtn = document.querySelector('#mix-btn');
+var sevenBtn = document.querySelector('#seven-btn');
+
 var arrToSet = [];
+
+//Timer
+var start, end;
 
 //function to choose Level
 var easyLevel = function() {
     arrToSet = symbols;
     showLevel(easyBtn);
 };
-
 easyBtn.addEventListener('click', easyLevel);
 
 var numbersLevel = function() {
     arrToSet = numbers;
     showLevel(numbersBtn);
 };
-
 numbersBtn.addEventListener('click', numbersLevel);
 
 var hardLevel = function() {
     arrToSet = sSymbols;
     showLevel(hardBtn);
 };
-
 hardBtn.addEventListener('click', hardLevel);
 
 var mixLevel = function () {
     arrToSet = symbols.concat(numbers, sSymbols);
     showLevel(mixBtn);
 };
-
 mixBtn.addEventListener('click', mixLevel);
 
 var showLevel = function(button) {
@@ -71,15 +73,41 @@ var showLevel = function(button) {
 //function to generate two random cards.
 var cardPickTwo = [];
 var cardPick = function() {
+    cards = document.querySelectorAll('.cards');
     cardPickTwo = [];
     while (cardPickTwo.length < 2) {
-        var genCardI = Math.floor(Math.random() * 5);
+        var genCardI = Math.floor(Math.random() * cards.length);
         if (cardPickTwo.indexOf(genCardI) === -1) {
             cardPickTwo.push(genCardI);
         };
     };
     console.log("Cards Index: "+cardPickTwo);
 };
+
+var cards = document.querySelectorAll('.cards');
+var createCards = function() {
+    cards = document.querySelectorAll('.cards');
+    if (cards.length === 5) {
+        sevenBtn.innerText = "5 Cards";
+        var i = 0;
+        while(i < 2) {
+            var createCardsSpan = document.createElement('span');
+            createCardsSpan.classList.add('cards');
+            createCardsSpan.style.marginRight = "5px";
+            allCards.appendChild(createCardsSpan);
+            i++;
+        };
+    } else if (cards.length === 7) {
+        sevenBtn.innerText = "7 Cards";
+        allCards = document.querySelector('#all-cards')
+        var j = 0;
+        while(j < 2) {
+            allCards.removeChild(allCards.lastChild);
+            j++;
+        };
+    };
+};
+sevenBtn.addEventListener('click', createCards);
 
 //function to generate two random symbols.
 var symPickTwo = [];
@@ -161,6 +189,11 @@ var makeCardSet = function() {
 // make new card set of 2 symbols once player completed. Reset correct and wrong card array.
 var cardSetDone = function() {
     if (correctCardArr.length === 2) {
+//TRIAL TIMER 10------------------------------
+        // end = new Date().getTime();
+        // console.log("10 " +end);
+        // var timetaken = (end - start)/1000;
+        // console.log("Time Taken: " + timetaken + "s")
         correctCardArr = [];
         wrongCardArr = [];
         var timeoutCardSet = setTimeout(makeCardSet, 500);
@@ -176,6 +209,7 @@ var scoreUpdate = function() {
     message.innerText = `You got it! Keep going ${playerInput.value}`
 };
 
+
 //check input if match or not. For Easy Symbols but did not link to the button yet.
 var checkInput = function(event) {
     if (event.key === 'Enter') {
@@ -187,6 +221,9 @@ var checkInput = function(event) {
                 playInputReset();
             } else if (arrToSet.length !== 0) {
                 setTimeout(makeCardSet, 500);
+//TRIAL TIMER 0------------------------------
+//                 start = new Date().getTime();
+//                 console.log("0 " +start);
                 playInputReset();
                 message.innerText = "Game start now. Enter the symbols on the cards. One at a time."
             };
