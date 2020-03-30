@@ -155,6 +155,7 @@ var resetGame = function() {
     for (var i = 0; i < levelBtns.length; i++) {
         levelBtns[i].classList.remove('hide');
     };
+    sevenBtn.classList.remove('hide');
     playerInput.value = "";
     playerName.innerText = "Player's Name";
     playerInput.classList.remove('hide');
@@ -216,6 +217,7 @@ var checkInput = function(event) {
         symTyped = playInput.value
         //whatever typed will be the playInput.value in the beginning.
         if (symTyped === "start") {
+            sevenBtn.classList.add('hide');
             if (arrToSet.length === 0) {
                 message.innerText = "Please Choose Level."
                 playInputReset();
