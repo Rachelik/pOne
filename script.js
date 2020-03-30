@@ -77,6 +77,9 @@ var resetGame = function() {
     score.innerText = 0;
     message.innerText = "";
     symTyped = "";
+    if (playInput.className === "game-over"){
+        playInput.classList.remove('game-over');
+    };
     for (var i = 0; i < cards.length; i++) {
         cards[i].innerText = "";
     };
@@ -132,6 +135,10 @@ var checkInput = function(event) {
                 score.innerText = totalscores;
                 playInputReset();
                 message.innerText = "Nope, try again please."
+                if(wrongCardArr.length === 3) {
+                    message.innerText = "Game Over. Reset Game to play again."
+                    playInput.classList.add('game-over');
+                }
             } else if (wrongCardArr.indexOf(symTyped) !== -1) {
                 message.innerText = "You have entered this wrong symbol before.";
                 playInputReset();
