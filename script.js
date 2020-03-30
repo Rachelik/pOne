@@ -27,23 +27,34 @@ var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 var easyBtn = document.querySelector('#easy-btn');
 var numbersBtn = document.querySelector('#numbers-btn');
 var hardBtn = document.querySelector('#hard-btn');
+var mixBtn = document.querySelector('#mix-btn');
+var arrToSet = [];
 
 //function to choose Level
 var easyLevel = function() {
-    var arrToSet = symbols;
-}
+    arrToSet = symbols;
+};
+
+easyBtn.addEventListener('click', easyLevel);
 
 var numbersLevel = function() {
-    var arrToSet = numbers;
-}
+    arrToSet = numbers;
+};
+
+numbersBtn.addEventListener('click', numbersLevel);
 
 var hardLevel = function() {
-    var arrToSet = sSymbols;
-}
+    arrToSet = sSymbols;
+};
+
+hardBtn.addEventListener('click', hardLevel);
 
 var mixLevel = function () {
-    var arrToSet = symbols.concat(numbers, sSymbols);
-}
+    arrToSet = symbols.concat(numbers, sSymbols);
+};
+
+mixBtn.addEventListener('click', mixLevel);
+
 
 //function to generate two random cards.
 var cardPickTwo = [];
@@ -60,10 +71,10 @@ var cardPick = function() {
 
 //function to generate two random symbols.
 var symPickTwo = [];
-var symPick = function() {
+var symPick = function(arrToSet) {
     symPickTwo = [];
     while (symPickTwo.length < 2) {
-        var genSymI = Math.floor(Math.random() * 11);
+        var genSymI = Math.floor(Math.random() * arrToSet.length);
         if (symPickTwo.indexOf(genSymI) === -1) {
             symPickTwo.push(genSymI);
         };
@@ -74,7 +85,7 @@ var symPick = function() {
 //function to link the two random symbols and cards together.
 var linkCardSym = function(cardPickArr, symPickArr) {
     for (var i = 0; i<cardPickArr.length; i++) {
-        cards[cardPickArr[i]].innerText = symbols[symPickArr[i]];
+        cards[cardPickArr[i]].innerText = arrToSet[symPickArr[i]];
     };
 };
 
@@ -94,7 +105,8 @@ playerInput.addEventListener('keypress', enterPlayerName);
 
 
 //reset everything
-var resetGame = function() {
+var resetGame = function(arrToSet) {
+    arrToSet = [];
     playerInput.value = "";
     playerName.innerText = "Player's Name";
     playerInput.classList.remove('hide');
@@ -124,7 +136,7 @@ var playInputReset = function() {
 var makeCardSet = function() {
     playInput.placeholder = "";
     cardPick();
-    symPick();
+    symPick(arrToSet);
     linkCardSym(cardPickTwo, symPickTwo);
     playInputReset();
 };
@@ -145,7 +157,7 @@ var scoreUpdate = function() {
     score.innerText = totalscores;
     cardSetDone();
     message.innerText = `You got it! Keep going ${playerInput.value}`
-}
+};
 
 //check input if match or not. For Easy Symbols but did not link to the button yet.
 var checkInput = function(event) {
@@ -157,7 +169,7 @@ var checkInput = function(event) {
             playInputReset();
             message.innerText = "Game start now. Enter the symbols. One at a time."
             // symTyped = playInput.value
-        } else if (symTyped !== symbols[symPickTwo[0]] && symTyped !== symbols[symPickTwo[1]]) {
+        } else if (symTyped !== arrToSet[symPickTwo[0]] && symTyped !== arrToSet[symPickTwo[1]]) {
             if (wrongCardArr.indexOf(symTyped) === -1){
                 wrongCardArr.push(symTyped);
                 totalscores -= 3;
@@ -172,7 +184,7 @@ var checkInput = function(event) {
                 message.innerText = "You have entered this wrong symbol before.";
                 playInputReset();
             };
-        } else if (symTyped === symbols[symPickTwo[0]] || symTyped === symbols[symPickTwo[1]]) {
+        } else if (symTyped === arrToSet[symPickTwo[0]] || symTyped === arrToSet[symPickTwo[1]]) {
             if (correctCardArr.indexOf(symTyped) === -1) {
                 correctCardArr.push(symTyped);
                 if (symTyped === cards[cardPickTwo[0]].innerText) {
