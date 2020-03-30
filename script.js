@@ -37,6 +37,8 @@ var arrToSet = [];
 
 //Timer
 var start, end;
+var timer = 60;
+var timerStart = "stop";
 
 //function to choose Level
 var easyLevel = function() {
@@ -146,6 +148,9 @@ playerInput.addEventListener('keypress', enterPlayerName);
 
 //reset everything
 var resetGame = function() {
+    timer = 60;
+    document.getElementById('one-min-timer').innerText = timer + "s";
+    timerStart = "stop";
     arrToSet = [];
     correctCardArr = [];
     wrongCardArr = [];
@@ -212,22 +217,19 @@ var scoreUpdate = function() {
 };
 
 
-
-var timerStart = "stop";
 //check input if match or not. For Easy Symbols but did not link to the button yet.
 var checkInput = function(event) {
     if (event.key === 'Enter') {
         symTyped = playInput.value
         //whatever typed will be the playInput.value in the beginning.
         if (symTyped === "start") {
-            sevenBtn.classList.add('hide');
-            timerStart = "start"
             if (arrToSet.length === 0) {
                 message.innerText = "Please Choose Level."
                 playInputReset();
             } else if (arrToSet.length !== 0) {
                 setTimeout(makeCardSet, 400);
-
+                timerStart = "start"
+                sevenBtn.classList.add('hide');
 //TRIAL TIMER 0------------------------------
 //                 start = new Date().getTime();
 //                 console.log("0 " +start);
@@ -274,7 +276,7 @@ playInput.addEventListener('keypress', checkInput);
 function myTimer() {
     if (timer>0 && timerStart === "start"){
         timer--;
-        document.getElementById('demo').innerText = timer + "s";
+        document.getElementById('one-min-timer').innerText = timer + "s";
 
     } else if (timer === 0) {
         timerStart === "stop";
@@ -283,6 +285,5 @@ function myTimer() {
     };
 };
 
-var myVar =setInterval(myTimer, 1000);
-var timer = 60;
-document.getElementById('demo').innerText = timer + "s";
+var myVar = setInterval(myTimer, 1000);
+document.getElementById('one-min-timer').innerText = timer + "s";
