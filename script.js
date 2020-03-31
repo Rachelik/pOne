@@ -38,17 +38,11 @@ var arrToSet = [];
 var timer = 60;
 var timerStart = "stop";
 
-//sound when a key is pressed
-var typeSound = function(event) {
-    if(event.key !== 'Enter' && sound === true){
-        document.querySelector('#sound').play();
-    };
-};
 
 
 var audioBtn = document.querySelector('#audio-btn')
-
 var sound = false;
+audioBtn.innerText = "🔇";
 var audioCtrl = function() {
     if (sound === true){
         sound = false;
@@ -58,8 +52,14 @@ var audioCtrl = function() {
         audioBtn.innerText = "🔊";
     };
 };
-
 audioBtn.addEventListener('click', audioCtrl)
+
+//sound when a key is pressed
+var typeSound = function(event) {
+    if(event.key !== 'Enter' && sound === true && timer < 60){
+        document.querySelector('#sound').play();
+    };
+};
 
 
 //****************************** Choose Level Button START **********************************
@@ -193,6 +193,7 @@ var resetGame = function() {
     arrToSet = [];
     correctCardArr = [];
     wrongCardArr = [];
+    playInput.disabled = false;
     for (var i = 0; i < cards.length; i++) {
         cards[i].innerText = "";
     };
@@ -209,9 +210,8 @@ var resetGame = function() {
     score.innerText = 0;
     message.innerText = "";
     symTyped = "";
-    if (playInput.className === "game-over"){
-        playInput.classList.remove('game-over');
-    };
+    sound = false;
+    audioBtn.innerText = "🔇";
     playInput.placeholder = "Enter 'start' to begin";
 };
 
@@ -287,10 +287,17 @@ var checkInput = function(event) {
                 score.innerText = totalscores;
                 playInputReset();
                 message.innerText = "Nope, try again please."
+//GAME-OVER----------------------------------------------
                 if(wrongCardArr.length === 3) {
                     message.innerText = "Game Over. Reset Game to play again."
-                    playInput.classList.add('game-over');
+                    playInput.disabled = true;
+                    sound = false;
+                    audioBtn.innerText = "🔇";
+                    timerStart = stop;
+                    // timer = 60;
+                    // document.getElementById('one-min-timer').innerText = timer + "s";
                 }
+//GAME-OVER----------------------------------------------
             } else if (wrongCardArr.indexOf(symTyped) !== -1) {
                 message.innerText = "You have entered this wrong symbol before.";
                 playInputReset();
@@ -326,8 +333,11 @@ function myTimer() {
 
     } else if (timer === 0) {
         timerStart === "stop";
+        sound = false;
+        audioBtn.innerText = "🔇";
         message.innerText = "Well done. Reset Game to play again."
-        playInput.classList.add('game-over');
+        playInput.value = "";
+        playInput.disabled = true;
     };
 };
 

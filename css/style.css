@@ -100,18 +100,13 @@ input {
 	padding-top: 0;
 }
 
-.warning {
-	color: red;
-	font-weight: bold;
-}
-
 #seven-btn, #reset-btn {
 	font-size: 14px;
 	padding: 3px 10px;
 }
 
 #audio-btn {
-
+	width: 30px;
 }
 
 #score-output {
@@ -125,5 +120,5 @@ input {
 }
 
 #try {
-	margin-left: 100px;
+	margin-left: 30px;
 }
