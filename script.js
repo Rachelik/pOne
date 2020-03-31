@@ -136,7 +136,7 @@ var enterPlayerName = function(event) {
     if (event.key === 'Enter') {
     //get name and change to upper case to greet
     playerName.innerHTML = "Hello "+playerInput.value.toUpperCase();
-    //hide input text-box and style away.
+    //hide input text-box and style away after player input
     playerInput.classList.add('hide');
     playerName.classList.add('style-change');
     };
@@ -272,7 +272,7 @@ var checkInput = function(event) {
 
 playInput.addEventListener('keypress', checkInput);
 
-
+//1 min timer and the game will stop taking in input.
 function myTimer() {
     if (timer>0 && timerStart === "start"){
         timer--;
