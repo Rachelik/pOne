@@ -16,7 +16,6 @@ var totalscores = 0;
 
 //correct card array for player correct guess. 2 input for each set. will reset every set of card.
 var correctCardArr = [];
-
 //wrong card array for play wrong guess. if 3 wrongs for each set, game over. will reset every set of card.
 var wrongCardArr = [];
 var symTyped;
@@ -26,20 +25,20 @@ var symbols = ["`", "-", "=", "[", "]", ";", "'", ",", ".", "/", "\u005C"];
 var sSymbols = ["<", ">", "?", ":", '"', "{", "}", "|", "+", "_", ")", "(", "*", "&", "^", "%", "$", "#", "@", "!", "~"];
 var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
-//choose level btn
+var arrToSet = [];
+
+//Choose Level btn or choose number of cards btn
 var easyBtn = document.querySelector('#easy-btn');
 var numbersBtn = document.querySelector('#numbers-btn');
 var hardBtn = document.querySelector('#hard-btn');
 var mixBtn = document.querySelector('#mix-btn');
 var sevenBtn = document.querySelector('#seven-btn');
 
-var arrToSet = [];
-
 //Timer
-var start, end;
 var timer = 60;
 var timerStart = "stop";
 
+//*************************1. Choose Level Button Start**********************************
 //function to choose Level
 var easyLevel = function() {
     arrToSet = symbols;
@@ -65,12 +64,11 @@ var mixLevel = function () {
 };
 mixBtn.addEventListener('click', mixLevel);
 
+//to display level selected and hide.
 var showLevel = function(button) {
     levelTitle.innerHTML = button.innerHTML;
-    for (var i = 0; i < levelBtns.length; i++) {
-        levelBtns[i].classList.add('hide');
-    };
 };
+//*************************1. Choose Level Button End**********************************
 
 //function to generate two random cards.
 var cardPickTwo = [];
@@ -196,11 +194,6 @@ var makeCardSet = function() {
 // make new card set of 2 symbols once player completed. Reset correct and wrong card array.
 var cardSetDone = function() {
     if (correctCardArr.length === 2) {
-//TRIAL TIMER 10------------------------------
-        // end = new Date().getTime();
-        // console.log("10 " +end);
-        // var timetaken = (end - start)/1000;
-        // console.log("Time Taken: " + timetaken + "s")
         correctCardArr = [];
         wrongCardArr = [];
         var timeoutCardSet = setTimeout(makeCardSet, 400);
@@ -228,11 +221,13 @@ var checkInput = function(event) {
                 playInputReset();
             } else if (arrToSet.length !== 0) {
                 setTimeout(makeCardSet, 400);
-                timerStart = "start"
+                timerStart = "start";
+
+                //only hide when game start
+                for (var i = 0; i < levelBtns.length; i++) {
+                    levelBtns[i].classList.add('hide');
+                };
                 sevenBtn.classList.add('hide');
-//TRIAL TIMER 0------------------------------
-//                 start = new Date().getTime();
-//                 console.log("0 " +start);
                 playInputReset();
                 message.innerText = "Game start now. Enter the symbols on the cards. One at a time."
             };
