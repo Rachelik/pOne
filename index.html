@@ -44,7 +44,14 @@
         <div id="play">
 
             <h5>Play input</h5>
-            <input type="text" id="play-input" placeholder="Enter 'start' to begin">
+            <div id="try">
+                <input type="text" id="play-input" placeholder="Enter 'start' to begin">
+
+                <button id="audio-btn">🔇</button>
+                <audio id="sound">
+                    <source src="./audio/typesound.mp3">
+                </audio>
+            </div>
             <p id="message"></p>
             <br>
 
@@ -55,7 +62,6 @@
         <div>
             <button id="reset-btn">Reset Game</button>
         </div>
-
     </div>
     <script type="text/javascript" src="script.js"></script>
 </body>

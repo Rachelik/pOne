@@ -20,6 +20,7 @@ h5 {
 	margin-top: 10px;
 }
 
+
 #greeting {
 	padding-top: 20px;
 }
@@ -35,7 +36,6 @@ h5 {
 	margin: 20px auto;
 	width: 700px;
 	height: 200px;
-	/*padding-left: 3px;*/
 	padding: 20px 0 10px 3px;
 }
 
@@ -53,15 +53,14 @@ h5 {
 }
 
 input {
-	font-size: 26px;
 	padding: 5px;
-	margin-bottom: 35px;
 	text-align: center;
 }
 
 #player-input {
-		font-size: 20px;
-		width: 400px;
+	font-size: 20px;
+	width: 400px;
+	margin-bottom: 35px;
 }
 
 #score-output {
@@ -72,7 +71,7 @@ input {
 	display: none;
 }
 
-/*style change for player's name after input*/
+/* style change for player's name after input */
 .style-change {
 	margin-bottom: 0;
 	font-size: 25px;
@@ -111,6 +110,20 @@ input {
 	padding: 3px 10px;
 }
 
+#audio-btn {
+
+}
+
 #score-output {
 	margin-bottom: 15px;
+}
+
+#play-input {
+	font-size: 26px;
+	position-relative;
+	margin-bottom: 10px;
+}
+
+#try {
+	margin-left: 100px;
 }

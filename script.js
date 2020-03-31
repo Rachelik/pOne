@@ -2,14 +2,22 @@ console.log("It is running!")
 //Ask for Player's Name
 var playerInput = document.querySelector('#player-input');
 var playerName = document.querySelector('#player-name');
-var resetBtn = document.querySelector('#reset-btn')
-var score = document.querySelector('#score');
-var playInput = document.querySelector('#play-input');
 var allCards = document.querySelector('#all-cards');
+var levelTitle = document.querySelector('#level-title');
+var playInput = document.querySelector('#play-input');
 
 var message = document.querySelector('#message');
-var levelTitle = document.querySelector('#level-title');
+var score = document.querySelector('#score');
+
 var levelBtns = document.querySelectorAll('.level-btn')
+var resetBtn = document.querySelector('#reset-btn')
+
+//Choose Level btn or choose number of cards btn
+var easyBtn = document.querySelector('#easy-btn');
+var numbersBtn = document.querySelector('#numbers-btn');
+var hardBtn = document.querySelector('#hard-btn');
+var mixBtn = document.querySelector('#mix-btn');
+var sevenBtn = document.querySelector('#seven-btn');
 
 //final scores to be accumulated here and update to score.
 var totalscores = 0;
@@ -24,21 +32,37 @@ var symTyped;
 var symbols = ["`", "-", "=", "[", "]", ";", "'", ",", ".", "/", "\u005C"];
 var sSymbols = ["<", ">", "?", ":", '"', "{", "}", "|", "+", "_", ")", "(", "*", "&", "^", "%", "$", "#", "@", "!", "~"];
 var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-
 var arrToSet = [];
 
-//Choose Level btn or choose number of cards btn
-var easyBtn = document.querySelector('#easy-btn');
-var numbersBtn = document.querySelector('#numbers-btn');
-var hardBtn = document.querySelector('#hard-btn');
-var mixBtn = document.querySelector('#mix-btn');
-var sevenBtn = document.querySelector('#seven-btn');
-
-//Timer
+//Variables for Timer
 var timer = 60;
 var timerStart = "stop";
 
-//*************************1. Choose Level Button Start**********************************
+//sound when a key is pressed
+var typeSound = function(event) {
+    if(event.key !== 'Enter' && sound === true){
+        document.querySelector('#sound').play();
+    };
+};
+
+
+var audioBtn = document.querySelector('#audio-btn')
+
+var sound = false;
+var audioCtrl = function() {
+    if (sound === true){
+        sound = false;
+        audioBtn.innerText = "🔇";
+    } else if (sound === false) {
+        sound = true;
+        audioBtn.innerText = "🔊";
+    };
+};
+
+audioBtn.addEventListener('click', audioCtrl)
+
+
+//****************************** Choose Level Button START **********************************
 //function to choose Level
 var easyLevel = function() {
     arrToSet = symbols;
@@ -68,8 +92,10 @@ mixBtn.addEventListener('click', mixLevel);
 var showLevel = function(button) {
     levelTitle.innerHTML = button.innerHTML;
 };
-//*************************1. Choose Level Button End**********************************
+//********************************* Choose Level Button END **********************************
 
+
+//******************************* Generate Two Random Cards START *************************
 //function to generate two random cards.
 var cardPickTwo = [];
 var cardPick = function() {
@@ -83,7 +109,12 @@ var cardPick = function() {
     };
     console.log("Cards Index: "+cardPickTwo);
 };
+//******************************** Generate Two Random Cards END ***************************
 
+
+//********************* Select numbers of cards in the game area START **********************
+//Note: will hide once player hit start and enter at checkMatch function
+//function to add 2 cards if current is 5 cards (default). to remove 2 if current is 7.
 var cards = document.querySelectorAll('.cards');
 var createCards = function() {
     cards = document.querySelectorAll('.cards');
@@ -108,7 +139,10 @@ var createCards = function() {
     };
 };
 sevenBtn.addEventListener('click', createCards);
+//********************* Select numbers of cards in the game area END ************************
 
+
+//********************* PICK TWO SYMBOLS to display on cards ********************************
 //function to generate two random symbols.
 var symPickTwo = [];
 var symPick = function(arrToSet) {
@@ -121,14 +155,20 @@ var symPick = function(arrToSet) {
     };
     console.log("Symbols Index: "+symPickTwo);
 };
+//********************* PICK TWO SYMBOLS to display on cards ********************************
 
+
+//********************* Link SYMBOLS to CARDS START *****************************************
 //function to link the two random symbols and cards together.
 var linkCardSym = function(cardPickArr, symPickArr) {
     for (var i = 0; i<cardPickArr.length; i++) {
         cards[cardPickArr[i]].innerText = arrToSet[symPickArr[i]];
     };
 };
+//********************* Link SYMBOLS to CARDS END *******************************************
 
+
+//*************************************** Player's NAME *************************************
 //function to enter name
 var enterPlayerName = function(event) {
     if (event.key === 'Enter') {
@@ -139,11 +179,12 @@ var enterPlayerName = function(event) {
     playerName.classList.add('style-change');
     };
 };
-
 //When Enter Key is clicked, name is fixed.
 playerInput.addEventListener('keypress', enterPlayerName);
+//*************************************** Player's NAME END *******************************
 
 
+//*************************************** RESET GAME **************************************
 //reset everything
 var resetGame = function() {
     timer = 60;
@@ -176,12 +217,15 @@ var resetGame = function() {
 
 //When reset button is clicked, everything reset.
 resetBtn.addEventListener('click', resetGame);
+//************************************** RESET GAME END **********************************
 
 //function to reset playInput value as user entered.
 var playInputReset = function() {
     playInput.value = "";
 };
 
+
+//**************************************Make NEW CARD SET*********************************
 //function to remake card set of two as user guessed correctly.
 var makeCardSet = function() {
     playInput.placeholder = "";
@@ -190,8 +234,11 @@ var makeCardSet = function() {
     linkCardSym(cardPickTwo, symPickTwo);
     playInputReset();
 };
+//************************************Make NEW CARD SET END*****************************
+
 
 // make new card set of 2 symbols once player completed. Reset correct and wrong card array.
+// 1 set = 2 cards = 1 round. make new round after this. <DECISION TO MOVE TO NEXT ROUND>
 var cardSetDone = function() {
     if (correctCardArr.length === 2) {
         correctCardArr = [];
@@ -199,6 +246,7 @@ var cardSetDone = function() {
         var timeoutCardSet = setTimeout(makeCardSet, 400);
     };
 };
+
 
 // if correct, add scores to totalscores then check if each set of 2 cards is done.
 var scoreUpdate = function() {
@@ -209,7 +257,7 @@ var scoreUpdate = function() {
     message.innerText = `You got it! Keep going ${playerInput.value}`
 };
 
-
+//################################## MAIN FUNCTION ##########################################
 //check input if match or not. For Easy Symbols but did not link to the button yet.
 var checkInput = function(event) {
     if (event.key === 'Enter') {
@@ -221,8 +269,8 @@ var checkInput = function(event) {
                 playInputReset();
             } else if (arrToSet.length !== 0) {
                 setTimeout(makeCardSet, 400);
+                document.addEventListener('keypress', typeSound);
                 timerStart = "start";
-
                 //only hide when game start
                 for (var i = 0; i < levelBtns.length; i++) {
                     levelBtns[i].classList.add('hide');
@@ -266,6 +314,9 @@ var checkInput = function(event) {
 };
 
 playInput.addEventListener('keypress', checkInput);
+//#################################### MAIN FUNCTION END #####################################
+
+
 
 //1 min timer and the game will stop taking in input.
 function myTimer() {
