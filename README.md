@@ -92,6 +92,7 @@ What habits did I have during this unit that I can improve on?
 - hard code, sublime short-cut and not knowing many operation of a macbook (have been using windows for 20 years).
 - thinking too hard that it complicates what I need to do (worry I don't have enough time or I didn't do enough or falling behind and not getting any better).
 - learning to learn on the spot (as I am used to learning on my own pace where I can pause when I have too much new information that sometimes, I am lost with live session.)
+- Catching some technical terms that I have not encountered before.
 
 How is the overall level of the course during this unit? (instruction, course materials, etc.)
 - Understanding the code, what it does and how developers normally use it (thinking process which makes coding more efficient or having less error, habit to avoid like try not to commit -m "message", etc.). 
