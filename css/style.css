@@ -211,6 +211,54 @@ input:focus {
 }
 
 #player-name {
-	color: #d8fe03;;
+	color: #d8fe03;
 	
+}
+
+#background-btm {
+	background-color: #d8fe03;
+	height: 80px;
+	width: 100%;
+	position: absolute;
+	margin: 0;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: row;
+	opacity: 80%;
+}
+
+.background-all {
+	background-color: #d8fe03;
+	height: 20px;
+	position: relative;
+	top: 0;
+	opacity: 60%;
+}
+
+#background-left {
+	background-color: #df90fd;
+	margin-top: -11px;
+	width: 30%;
+	border-radius: 0 0 100% 100%;
+}
+
+#background-center {
+	margin-top: -8px;
+	width: 30%;
+	border-radius: 100% 100% 0% 0%;
+}
+
+#background-right {
+	background-color: #df90fd;
+	margin-top: -11px;
+	width: 30%;
+	border-radius: 0 0 100% 100%;
+}
+
+#background-last {
+	margin-top: -8px;
+	width: 10%;
+	right: 0;
+	border-radius: 80% 50% 0% 0%;
 }
