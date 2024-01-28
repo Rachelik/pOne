@@ -216,7 +216,7 @@ input:focus {
 }
 
 #background-btm {
-	background-color: #d8fe03;
+	background-color: #feaf03;
 	height: 80px;
 	width: 100%;
 	position: absolute;
@@ -229,7 +229,7 @@ input:focus {
 }
 
 .background-all {
-	background-color: #d8fe03;
+	background-color: #feaf03;
 	height: 20px;
 	position: relative;
 	top: 0;
