@@ -12,63 +12,70 @@
 
 </head>
 <body>
-    <div>
-        <h1 class="main-title">Symbolical Numerical Type Game</h1>
-        <p>Practice typing symbols and numbers</p>
-    </div>
-    <div id="game-area">
-        <div id="greeting">
-            <h5 id="player-name" class=""></h5>
-            <input type="text" id="player-input" class=""  placeholder="Enter your name here">
-            <br>
+    <div id="main-container">
+        <div>
+            <h1 class="main-title">Symbolical Numerical Type Game</h1>
+            <p>Practice typing symbols and numbers</p>
         </div>
-        <div id="game-level">
-            <h5 id="level-title">LEVEL</h5>
-            <button id="easy-btn" class="level-btn">Easy Symbols</button>
-            <button id="numbers-btn" class="level-btn">Numbers</button>
-            <button id="hard-btn" class="level-btn">Hard Symbols</button>
-            <button id="mix-btn" class="level-btn">Mix ALL</button>
-            <button id="seven-btn">7 Cards</button>
-        </div>
-        
-        <div id="board">
-            <div id="scores">
-                <p id="score-output">Score
-                    <span id="score">0</span>
-                </p>
+        <div id="game-area">
+            <div id="greeting">
+                <h5 id="player-name" class=""></h5>
+                <input type="text" id="player-input" class=""  placeholder="Enter your name here">
+                <br>
             </div>
-            <div id="timer">
-                <p id="one-min-timer"></p>
+            <div id="game-level">
+                <h5 id="level-title">LEVEL</h5>
+                <button id="easy-btn" class="level-btn">Easy Symbols</button>
+                <button id="numbers-btn" class="level-btn">Numbers</button>
+                <button id="hard-btn" class="level-btn">Hard Symbols</button>
+                <button id="mix-btn" class="level-btn">Mix ALL</button>
+                <button id="seven-btn">7 Cards</button>
             </div>
-            <div id="all-cards" >
-                <span class="cards"></span>
-                <span class="cards"></span>
-                <span class="cards"></span>
-                <span class="cards"></span>
-                <span class="cards"></span>
+            
+            <div id="board">
+                <div id="scores">
+                    <p id="score-output">Score
+                        <span id="score">0</span>
+                    </p>
+                </div>
+                <div id="timer">
+                    <p id="one-min-timer"></p>
+                </div>
+                <div id="all-cards" >
+                    <span class="cards"></span>
+                    <span class="cards"></span>
+                    <span class="cards"></span>
+                    <span class="cards"></span>
+                    <span class="cards"></span>
+                </div>
             </div>
+
+            <div id="play">
+                <div id="try">
+                    <input type="text" id="play-input" placeholder="Enter 'start' to begin">
+                    <button id="audio-btn">🔇</button>
+                    <audio id="sound">
+                        <source src="./audio/typesound.mp3">
+                    </audio>
+                </div>
+                <p id="message"></p>
+                <br>
+            </div>
+
+            <button id="reset-btn">Reset Game</button>
         </div>
 
-        <div id="play">
-            <div id="try">
-                <input type="text" id="play-input" placeholder="Enter 'start' to begin">
-                <button id="audio-btn">🔇</button>
-                <audio id="sound">
-                    <source src="./audio/typesound.mp3">
-                </audio>
-            </div>
-            <p id="message"></p>
-            <br>
+    </div>
+    <!-- <div id="bottom-background">
+        <div id="background-btm">
+            <div id="background-left" class="background-all"></div>
+            <div id="background-center" class="background-all"></div>
+            <div id="background-right" class="background-all"></div>
+            <div id="background-last" class="background-all"></div>
         </div>
+    </div> -->
 
-        <button id="reset-btn">Reset Game</button>
-    </div>
-    <div id="background-btm">
-        <div id="background-left" class="background-all"></div>
-        <div id="background-center" class="background-all"></div>
-        <div id="background-right" class="background-all"></div>
-        <div id="background-last" class="background-all"></div>
-    </div>
+
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

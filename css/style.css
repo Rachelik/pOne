@@ -1,9 +1,21 @@
-body {
+html, body {
 	background-color: #df90fd;
-	margin: 20px auto;
+	font-family: sans-serif;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+#main-container {
+	display: block;
+	background-color: #df90fd;
 	text-align: center;
 	font-family: sans-serif;
-	width: 700px;
+	width: fit-content;
+	height: 90%;
+	margin: 0 auto;
+	position: relative;
 }
 
 /*Header*/
@@ -145,7 +157,7 @@ input {
 
 .level-btn {
 	background-color: #FF00C5;
-	/* margin-right: 5px; */
+	margin: 6px;
 	padding: 3px 18px;
 	font-size: 1rem;
 	font-weight: bold;
@@ -174,6 +186,7 @@ input {
 	border-radius: 20px;
 	background-color: #FF00C5;
 	border: none;
+	z-index: 0;
 }
 
 #audio-btn {
@@ -212,17 +225,13 @@ input:focus {
 
 #player-name {
 	color: #d8fe03;
-	
 }
-
+/* 
 #background-btm {
 	background-color: #feaf03;
-	height: 80px;
+	height: 10%;
 	width: 100%;
-	position: absolute;
 	margin: 0;
-	left: 0;
-	bottom: 0;
 	display: flex;
 	flex-direction: row;
 	opacity: 80%;
@@ -234,6 +243,14 @@ input:focus {
 	position: relative;
 	top: 0;
 	opacity: 60%;
+	margin: 0;
+}
+
+#bottom-background {
+	display: block;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
 }
 
 #background-left {
@@ -261,4 +278,4 @@ input:focus {
 	width: 10%;
 	right: 0;
 	border-radius: 80% 50% 0% 0%;
-}
+} */
