@@ -250,31 +250,18 @@ input:focus {
 @media only screen and (max-width: 650px) {
 
 	h1 {
-		color: black;
-		margin-top: 20px;
 		font-size: 1.5rem;
-		font-weight: bold;
-		width: fit-content;
-		text-align: center;
 	}
 
 	#player-input {
 		font-size: 1.25rem;
 		width: 260px;
-		margin-bottom: 20px;
-	}
-
-	#board {
-		width: fit-content;
-		position: relative;
-		margin: 0 auto;
 	}
 
 	/*Cards*/
 	#all-cards {
 		height: 220px;
 		padding: 10px 20px 10px 20px;
-		border-radius: 6px;
 	}
 
 	.cards {
@@ -289,34 +276,17 @@ input:focus {
 		margin: 3px;
 		padding: 2px 16px;
 		font-size: 0.8rem;
-		font-weight: bold;
-		color: #d8fe03;
 		height: 40px;
-		width: fit-content;
-		border: none;
-		border-radius: 6px;
 	}
-
-	/* #game-level {
-		max-width: 80%;
-	} */
 
 	.unique-button {
 		height: 40px;
 		font-size: 0.8rem;
-		font-weight: bold;
-		color: #d8fe03;
 		padding: 2px 14px;
-		border-radius: 20px;
-		background-color: #FF00C5;
-		border: none;
-		z-index: 2;
 	}
 
 	#game-area {
 		margin: 5px auto;
-		width: fit-content;
-		padding: 0;
 	}
 
 	
@@ -327,8 +297,6 @@ input:focus {
 
 	#play-input {
 		font-size: 1.325rem;
-		border-radius: 6px;
-		border: 2px #FF00C5 solid;
 		margin-right: 10px;
 		margin-left: 20px;
 		margin-top: 12px;
