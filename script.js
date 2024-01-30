@@ -124,7 +124,7 @@ var createCards = function() {
         while(i < 2) {
             var createCardsSpan = document.createElement('span');
             createCardsSpan.classList.add('cards');
-            createCardsSpan.style.marginRight = "5px";
+            createCardsSpan.style.marginRight = "4px";
             allCards.appendChild(createCardsSpan);
             i++;
         };
@@ -153,7 +153,6 @@ var symPick = function(arrToSet) {
             symPickTwo.push(genSymI);
         };
     };
-    console.log("Symbols Index: "+symPickTwo);
 };
 //********************* PICK TWO SYMBOLS to display on cards ********************************
 
@@ -168,13 +167,20 @@ var linkCardSym = function(cardPickArr, symPickArr) {
 //********************* Link SYMBOLS to CARDS END *******************************************
 
 
+function titleCase(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' '); 
+ }
+ 
+
 //*************************************** Player's NAME *************************************
 //function to enter name
 var enterPlayerName = function(event) {
     if (event.key === 'Enter') {
-    //get name and change to upper case to greet
-    playerName.innerHTML = "Hello "+playerInput.value.toUpperCase();
-    //hide input text-box and style away after player input
+    playerName.innerHTML = "Hello "+ titleCase(playerInput.value);
     playerInput.classList.add('hide');
     playerName.classList.add('style-change');
     };
@@ -294,8 +300,6 @@ var checkInput = function(event) {
                     sound = false;
                     audioBtn.innerText = "🔇";
                     timerStart = stop;
-                    // timer = 60;
-                    // document.getElementById('one-min-timer').innerText = timer + "s";
                 }
 //GAME-OVER----------------------------------------------
             } else if (wrongCardArr.indexOf(symTyped) !== -1) {

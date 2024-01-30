@@ -12,9 +12,12 @@ html, body {
 	text-align: center;
 	font-family: sans-serif;
 	width: fit-content;
-	height: 90%;
 	margin: 0 auto;
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 /*Header*/
@@ -30,7 +33,6 @@ h5 {
 	margin-bottom: 8px;
 	margin-top: 10px;
 }
-
 
 #greeting {
 	padding-top: 10px;
@@ -59,12 +61,12 @@ h5 {
 	top: 0;
 	left: 0;
 	z-index: 2;
-	margin-left: 12px;
+	margin-left: 0;
 }
 
 #one-min-timer {
 	margin: 0;
-	margin-right: 12px;
+	margin-right: 0;
 }
 
 #timer {
@@ -84,7 +86,7 @@ h5 {
 	font-size: 1.25rem;
 	width: 80px;
 	padding: 12px 14px 8px 14px;
-	background-color: #F60D09;
+	background-color: transparent;
 	border-radius: 6px;
 	margin: 0;
 }
@@ -100,7 +102,7 @@ h5 {
 	margin: 0px;
 	width: fit-content;
 	height: 260px;
-	padding: 10px 50px 10px 50px;
+	padding: 10px 40px 10px 40px;
 	border-radius: 6px;
 }
 
@@ -199,9 +201,9 @@ input {
 
 #audio-btn {
 	width: fit-content;
-	padding: 5px 10px;
+	padding: 4px 8px;
 	height: fit-content;
-	font-size: 1.5rem;
+	font-size: 1.75rem;
 	text-align: center;
 	background-color: #FF00C5;
 	border: none;
@@ -241,58 +243,95 @@ input:focus {
 
 .footer {
 	width: 100%;
+	margin-top: 50px;
 }
 
-/* 
-#background-btm {
-	background-color: #feaf03;
-	height: 10%;
-	width: 100%;
-	margin: 0;
-	display: flex;
-	flex-direction: row;
-	opacity: 80%;
-}
 
-.background-all {
-	background-color: #feaf03;
-	height: 20px;
-	position: relative;
-	top: 0;
-	opacity: 60%;
-	margin: 0;
-}
+@media only screen and (max-width: 650px) {
 
-#bottom-background {
-	display: block;
-	width: 100%;
-	height: 100%;
-	z-index: 0;
-}
+	h1 {
+		color: black;
+		margin-top: 20px;
+		font-size: 1.5rem;
+		font-weight: bold;
+		width: fit-content;
+		text-align: center;
+	}
 
-#background-left {
-	background-color: #df90fd;
-	margin-top: -11px;
-	width: 30%;
-	border-radius: 0 0 100% 100%;
-}
+	#player-input {
+		font-size: 1.25rem;
+		width: 260px;
+		margin-bottom: 20px;
+	}
 
-#background-center {
-	margin-top: -8px;
-	width: 30%;
-	border-radius: 100% 100% 0% 0%;
-}
+	#board {
+		width: fit-content;
+		position: relative;
+		margin: 0 auto;
+	}
 
-#background-right {
-	background-color: #df90fd;
-	margin-top: -11px;
-	width: 30%;
-	border-radius: 0 0 100% 100%;
-}
+	/*Cards*/
+	#all-cards {
+		height: 220px;
+		padding: 10px 20px 10px 20px;
+		border-radius: 6px;
+	}
 
-#background-last {
-	margin-top: -8px;
-	width: 10%;
-	right: 0;
-	border-radius: 80% 50% 0% 0%;
-} */
+	.cards {
+		width: 50px;
+		height: 80px;
+		font-size: 2.5rem;
+		line-height: 80px;
+		margin: 2px;
+	}
+
+	.level-btn {
+		margin: 3px;
+		padding: 2px 16px;
+		font-size: 0.8rem;
+		font-weight: bold;
+		color: #d8fe03;
+		height: 40px;
+		width: fit-content;
+		border: none;
+		border-radius: 6px;
+	}
+
+	/* #game-level {
+		max-width: 80%;
+	} */
+
+	.unique-button {
+		height: 40px;
+		font-size: 0.8rem;
+		font-weight: bold;
+		color: #d8fe03;
+		padding: 2px 14px;
+		border-radius: 20px;
+		background-color: #FF00C5;
+		border: none;
+		z-index: 2;
+	}
+
+	#game-area {
+		margin: 5px auto;
+		width: fit-content;
+		padding: 0;
+	}
+
+	
+	#audio-btn {
+		padding: 2px 6px;
+		font-size: 1.5rem;
+	}
+
+	#play-input {
+		font-size: 1.325rem;
+		border-radius: 6px;
+		border: 2px #FF00C5 solid;
+		margin-right: 10px;
+		margin-left: 20px;
+		margin-top: 12px;
+		width: 60%;
+	}
+}
