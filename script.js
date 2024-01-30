@@ -116,29 +116,29 @@ var cardPick = function() {
 //Note: will hide once player hit start and enter at checkMatch function
 //function to add 2 cards if current is 5 cards (default). to remove 2 if current is 7.
 var cards = document.querySelectorAll('.cards');
-var createCards = function() {
-    cards = document.querySelectorAll('.cards');
-    if (cards.length === 5) {
-        sevenBtn.innerText = "5 Cards";
-        var i = 0;
-        while(i < 2) {
-            var createCardsSpan = document.createElement('span');
-            createCardsSpan.classList.add('cards');
-            createCardsSpan.style.marginRight = "4px";
-            allCards.appendChild(createCardsSpan);
-            i++;
-        };
-    } else if (cards.length === 7) {
-        sevenBtn.innerText = "7 Cards";
-        allCards = document.querySelector('#all-cards')
-        var j = 0;
-        while(j < 2) {
-            allCards.removeChild(allCards.lastChild);
-            j++;
-        };
-    };
-};
-sevenBtn.addEventListener('click', createCards);
+// var createCards = function() {
+//     cards = document.querySelectorAll('.cards');
+//     if (cards.length === 5) {
+//         sevenBtn.innerText = "5 Cards";
+//         var i = 0;
+//         while(i < 2) {
+//             var createCardsSpan = document.createElement('span');
+//             createCardsSpan.classList.add('cards');
+//             createCardsSpan.style.marginRight = "4px";
+//             allCards.appendChild(createCardsSpan);
+//             i++;
+//         };
+//     } else if (cards.length === 7) {
+//         sevenBtn.innerText = "7 Cards";
+//         allCards = document.querySelector('#all-cards')
+//         var j = 0;
+//         while(j < 2) {
+//             allCards.removeChild(allCards.lastChild);
+//             j++;
+//         };
+//     };
+// };
+// sevenBtn.addEventListener('click', createCards);
 //********************* Select numbers of cards in the game area END ************************
 
 
